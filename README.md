@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
+# ● 1. nextjsアプリの作成
+```
+npx create-next-app@latest --ts nextjs-cloud-run-deploy-sample
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# ● 2. package.jsonに追記
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+**package.json** に以下を追記
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```
+"engines": {
+  "node": "16.x"
+},
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+```
+  "scripts": {
+    ....
+    "gcp-build": "next build"
+  },
+```
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# ● 3. Google Cloud で設定してデプロイ実行
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+1. 好きなプロジェクトを選択（なければ新規作成）
+2. Cloud Run へ移動
+3.「サービスの作成」をクリック
+4.「ソース リポジトリから新しいリビジョンを継続的にデプロイする」を選択し「CLOUD BUILD の設定」ボタンをクリック
+5.「Cloud Build APIを有効にする」をクリック
+6. Githubを認証し、「GOOGLE CLOUD BUILDのインストール」をクリック
+7. リポジトリを選択する
+8. 「次へ」をクリックして「Go、Node.js、Python、Java、.NET Core、Ruby（Google Cloud Buildpacks  を使用）」を選択して「保存」
+9. 以下の設定で「作成」
+---------------------
+リージョン: asia-northeasat1 (東京)
+自動スケーリング インスタンスの最大数 1
+認証: 未認証の呼び出しを許可
+---------------------
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
