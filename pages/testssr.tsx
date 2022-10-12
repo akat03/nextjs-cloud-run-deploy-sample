@@ -1,13 +1,19 @@
 
+
 // This gets called on every request
 export async function getServerSideProps() {
+
+
   // Fetch data from external API
-  const res = await fetch(`https://jsonplaceholder.typicode.com/users/1`)
+  var randNo = Math.floor(Math.random() * 11);
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users/${randNo}`)
   const data = await res.json()
 
   // Pass data to the page via props
   return { props: { data } }
 }
+
+
 
 
 interface Props {
