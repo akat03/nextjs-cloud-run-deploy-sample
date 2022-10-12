@@ -2,11 +2,17 @@
   "name": "cloud-run-deploy-sample",
   "version": "0.1.0",
   "private": true,
+
+  "engines": {
+    "node": "16.x"
+  },
+
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gcp-build": "next build"
   },
   "dependencies": {
     "next": "12.3.1",
